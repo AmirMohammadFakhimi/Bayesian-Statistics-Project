@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>phase0</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="phase0_files/libs/clipboard/clipboard.min.js"></script>
+<script src="phase0_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="phase0_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="phase0_files/libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="phase0_files/libs/quarto-html/popper.min.js"></script>
+<script src="phase0_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="phase0_files/libs/quarto-html/anchor.min.js"></script>
+<link href="phase0_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="phase0_files/libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="phase0_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="phase0_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="phase0_files/libs/bootstrap/bootstrap-943e08653f4bd8ac7ab9292bfc489267.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="fullcontent quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Phase 0 — Replicating the Published Study</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This notebook replicates the one clustering pipeline the paper — Caravita et al.&nbsp;(2026), <em>Pulmonary Circulation</em>, “Hemodynamic-driven staging of HFpEF” — actually reports: unscaled k-means (k=5) on 8 of 14 hemodynamic variables, selected by a stated correlation-threshold rule. <code>script.r</code> (the group’s reference code) contains this pipeline too, but buried inside six variants (scaled/unscaled × continuous-all/continuous-subset/binary); this notebook keeps only the one branch that matches the paper, and derives the variable-selection step from the real published correlation table instead of copying a hardcoded list.</p>
+<p>This is pure replication, following their process exactly as reported. Everything about <em>whether</em> their 8 variables (or their k-means method) are actually the right choice for our own model is deferred to Phase 1 (variable assessment) and Phase 2 (the Bayesian model) — this notebook only asks “did we reproduce what they reported.”</p>
+<p><strong>Source files:</strong> <code>dataset1.txt</code>, <code>dataset2.txt</code>, <code>dataset3.txt</code> — raw per-patient, per-exercise-step right-heart-catheterization data. Each patient has three rows: <code>REST</code>, <code>LEG</code> (“feet on the pedals”), <code>PEAK</code>.</p>
+<div id="2398d60d" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>os.environ.setdefault(<span class="st">"OMP_NUM_THREADS"</span>, <span class="st">"1"</span>)  <span class="co"># avoids a known KMeans/MKL warning on Windows</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>RANDOM_STATE <span class="op">=</span> <span class="dv">12345</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Where the three dataset .txt files live. Fixed to the shared project</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># folder so this runs the same whether it's executed from a GitHub checkout,</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># this machine, or anywhere else — override with the DATA_DIR environment</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># variable if you ever need to point it elsewhere without editing the file.</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>DATA_DIR <span class="op">=</span> Path(os.environ.get(</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DATA_DIR"</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="vs">r"C:</span><span class="er">\</span><span class="vs">Users</span><span class="dv">\m</span><span class="vs">itch</span><span class="er">\</span><span class="vs">OneDrive</span><span class="ch">\1</span><span class="vs">   B</span><span class="dv">.</span><span class="vs">ENGG</span><span class="ch">\0</span><span class="vs">   POLIMI</span><span class="dv">\B</span><span class="vs">ayesian Statistics</span><span class="er">\</span><span class="vs">Project</span><span class="ch">\r</span><span class="vs">_code_datasets_wd"</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="load-the-raw-data" class="level2">
+<h2 class="anchored" data-anchor-id="load-the-raw-data">1. Load the raw data</h2>
+<div id="2f28faed" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>list1 <span class="op">=</span> pd.read_table(DATA_DIR <span class="op">/</span> <span class="st">"dataset1.txt"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>list2 <span class="op">=</span> pd.read_table(DATA_DIR <span class="op">/</span> <span class="st">"dataset2.txt"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>list3 <span class="op">=</span> pd.read_table(DATA_DIR <span class="op">/</span> <span class="st">"dataset3.txt"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">len</span>(list1) <span class="op">==</span> <span class="bu">len</span>(list2) <span class="op">==</span> <span class="bu">len</span>(list3)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ID"</span>: list1[<span class="st">"ID"</span>].astype(<span class="bu">int</span>),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"STEP"</span>: list1[<span class="st">"STEP"</span>].astype(<span class="st">"category"</span>),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PAWP.MIDA"</span>: list1[<span class="st">"PAWP.MIDA"</span>].astype(<span class="bu">float</span>),       <span class="co"># end-diastolic PAWP</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PAWP.MEDIA"</span>: list1[<span class="st">"PAWP.MEDIA"</span>].astype(<span class="bu">float</span>),     <span class="co"># mean PAWP</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"RAP.MIDA"</span>: list1[<span class="st">"RAP.MIDA"</span>].astype(<span class="bu">float</span>),         <span class="co"># end-diastolic RAP</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"RAP.MEDIA"</span>: list1[<span class="st">"RAP.MEDIA"</span>].astype(<span class="bu">float</span>),       <span class="co"># mean RAP</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PAPM"</span>: list2[<span class="st">"PAPM"</span>].astype(<span class="bu">float</span>),                 <span class="co"># mean PA pressure</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PAWP_MIDA.CO.f.slp"</span>: list2[<span class="st">"PAWP.MIDA.CO.f.slp"</span>].astype(<span class="bu">float</span>),</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PAWP.V.AMPL"</span>: list2[<span class="st">"PAWP.V.AMPL"</span>].astype(<span class="bu">float</span>),</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PAWP.MEDIA.CO.f.slp"</span>: list2[<span class="st">"PAWP.MEDIA.CO.f.slp"</span>].astype(<span class="bu">float</span>),</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PVR.MEDIA"</span>: list2[<span class="st">"PVR.MEDIA"</span>].astype(<span class="bu">float</span>),</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"RAP.VY"</span>: list2[<span class="st">"RAP.VY"</span>].astype(<span class="bu">float</span>),             <span class="co"># RAP systolic amplitude</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CI"</span>: list2[<span class="st">"CI"</span>].astype(<span class="bu">float</span>),</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"COVO2.slp"</span>: list2[<span class="st">"COVO2.slp"</span>].astype(<span class="bu">float</span>),</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PAPM.CO.f.slp"</span>: list2[<span class="st">"PAPM.CO.f.slp"</span>].astype(<span class="bu">float</span>),</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"RAP.MEDIA.CO.f.slp"</span>: list3[<span class="st">"RAP.MEDIA.CO.f.slp"</span>].astype(<span class="bu">float</span>),</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PH"</span>: list3[<span class="st">"PH"</span>].astype(<span class="bu">int</span>),</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"HFpEF"</span>: list3[<span class="st">"HFpEF"</span>].astype(<span class="bu">int</span>),</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"stiff_LA"</span>: list3[<span class="st">"stiff.LA"</span>].astype(<span class="bu">int</span>),</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"high_PVR"</span>: list3[<span class="st">"high.PVR"</span>].astype(<span class="bu">int</span>),</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"RHF"</span>: list3[<span class="st">"RHF"</span>].astype(<span class="bu">int</span>),</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"TR"</span>: list3[<span class="st">"TR"</span>].astype(<span class="bu">int</span>),</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">"low_CO"</span>: list3[<span class="st">"low.CO"</span>].astype(<span class="bu">int</span>),</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>peak_covo2 <span class="op">=</span> dataset.loc[dataset[<span class="st">"STEP"</span>] <span class="op">==</span> <span class="st">"PEAK"</span>].set_index(<span class="st">"ID"</span>)[<span class="st">"COVO2.slp"</span>]</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>dataset[<span class="st">"COVO2.slp"</span>] <span class="op">=</span> dataset[<span class="st">"ID"</span>].<span class="bu">map</span>(peak_covo2)  <span class="co"># PEAK is the only correct value</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>hemo_vars <span class="op">=</span> [<span class="st">"PAPM"</span>, <span class="st">"PAWP.MIDA"</span>, <span class="st">"PAWP_MIDA.CO.f.slp"</span>, <span class="st">"PAWP.V.AMPL"</span>, <span class="st">"PAWP.MEDIA"</span>,</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>             <span class="st">"PAWP.MEDIA.CO.f.slp"</span>, <span class="st">"PVR.MEDIA"</span>, <span class="st">"RAP.MIDA"</span>, <span class="st">"RAP.MEDIA"</span>,</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>             <span class="st">"RAP.MEDIA.CO.f.slp"</span>, <span class="st">"RAP.VY"</span>, <span class="st">"CI"</span>, <span class="st">"COVO2.slp"</span>, <span class="st">"PAPM.CO.f.slp"</span>]</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>binary_vars <span class="op">=</span> [<span class="st">"PH"</span>, <span class="st">"HFpEF"</span>, <span class="st">"stiff_LA"</span>, <span class="st">"high_PVR"</span>, <span class="st">"RHF"</span>, <span class="st">"TR"</span>, <span class="st">"low_CO"</span>]</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>slope_vars <span class="op">=</span> [<span class="st">"PAWP_MIDA.CO.f.slp"</span>, <span class="st">"PAWP.MEDIA.CO.f.slp"</span>, <span class="st">"RAP.MEDIA.CO.f.slp"</span>,</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>              <span class="st">"COVO2.slp"</span>, <span class="st">"PAPM.CO.f.slp"</span>]</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dataset[<span class="st">"STEP"</span>].value_counts())</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>dataset.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>STEP
+PEAK    89
+REST    89
+LEG     88
+Name: count, dtype: int64</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">ID</th>
+<th data-quarto-table-cell-role="th">STEP</th>
+<th data-quarto-table-cell-role="th">PAWP.MIDA</th>
+<th data-quarto-table-cell-role="th">PAWP.MEDIA</th>
+<th data-quarto-table-cell-role="th">RAP.MIDA</th>
+<th data-quarto-table-cell-role="th">RAP.MEDIA</th>
+<th data-quarto-table-cell-role="th">PAPM</th>
+<th data-quarto-table-cell-role="th">PAWP_MIDA.CO.f.slp</th>
+<th data-quarto-table-cell-role="th">PAWP.V.AMPL</th>
+<th data-quarto-table-cell-role="th">PAWP.MEDIA.CO.f.slp</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">COVO2.slp</th>
+<th data-quarto-table-cell-role="th">PAPM.CO.f.slp</th>
+<th data-quarto-table-cell-role="th">RAP.MEDIA.CO.f.slp</th>
+<th data-quarto-table-cell-role="th">PH</th>
+<th data-quarto-table-cell-role="th">HFpEF</th>
+<th data-quarto-table-cell-role="th">stiff_LA</th>
+<th data-quarto-table-cell-role="th">high_PVR</th>
+<th data-quarto-table-cell-role="th">RHF</th>
+<th data-quarto-table-cell-role="th">TR</th>
+<th data-quarto-table-cell-role="th">low_CO</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1</td>
+<td>REST</td>
+<td>27.0</td>
+<td>35.0</td>
+<td>15.0</td>
+<td>16.0</td>
+<td>46.333333</td>
+<td>7.465297</td>
+<td>14.0</td>
+<td>4.524106</td>
+<td>...</td>
+<td>6.064614</td>
+<td>3.928583</td>
+<td>0.469934</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>1</td>
+<td>LEG</td>
+<td>30.0</td>
+<td>39.0</td>
+<td>18.0</td>
+<td>20.0</td>
+<td>49.000000</td>
+<td>7.465297</td>
+<td>19.0</td>
+<td>4.524106</td>
+<td>...</td>
+<td>6.064614</td>
+<td>3.928583</td>
+<td>0.469934</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>1</td>
+<td>PEAK</td>
+<td>39.0</td>
+<td>43.0</td>
+<td>22.0</td>
+<td>22.0</td>
+<td>58.000000</td>
+<td>7.465297</td>
+<td>10.0</td>
+<td>4.524106</td>
+<td>...</td>
+<td>6.064614</td>
+<td>3.928583</td>
+<td>0.469934</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>2</td>
+<td>REST</td>
+<td>17.0</td>
+<td>29.0</td>
+<td>8.0</td>
+<td>9.0</td>
+<td>32.666667</td>
+<td>4.857078</td>
+<td>11.0</td>
+<td>4.058301</td>
+<td>...</td>
+<td>6.400616</td>
+<td>5.055353</td>
+<td>2.140187</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>2</td>
+<td>LEG</td>
+<td>19.0</td>
+<td>32.0</td>
+<td>11.0</td>
+<td>11.0</td>
+<td>34.666667</td>
+<td>4.857078</td>
+<td>13.0</td>
+<td>4.058301</td>
+<td>...</td>
+<td>6.400616</td>
+<td>5.055353</td>
+<td>2.140187</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 23 columns</p>
+</div>
+</div>
+</div>
+<p><strong>Note on the binary columns above</strong> — these 7 flags are loaded here exactly as <code>script.r</code> and the paper’s variable list define them, for inventory purposes only; this notebook’s clustering step never uses them (the paper’s reported model is continuous-only). Phase 1 investigates these 7 columns properly, including a structural finding about how they actually behave across REST/LEG/PEAK that matters a lot once they <em>are</em> used as model inputs in Phase 2.</p>
+</section>
+<section id="correlation-matrix-paper-2.2-e-table-1" class="level2">
+<h2 class="anchored" data-anchor-id="correlation-matrix-paper-2.2-e-table-1">2. Correlation matrix (paper §2.2, e-Table 1)</h2>
+<p>The real published 14×14 Pearson correlation matrix, transcribed from e-Table 1 in the paper’s Supporting Information — not recomputed, so this is their actual numbers.</p>
+<p>For two variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> measured on the same <span class="math inline">\(n\)</span> patients, the Pearson correlation coefficient is</p>
+<p><span class="math display">\[
+r_{xy} = \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})}
+              {\sqrt{\sum_{i=1}^{n}(x_i - \bar{x})^2}\sqrt{\sum_{i=1}^{n}(y_i - \bar{y})^2}}
+\]</span></p>
+<p>i.e.&nbsp;the sample covariance of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, normalized by their standard deviations, giving a value in <span class="math inline">\([-1, 1]\)</span>. The paper’s rule — drop one variable from any pair with <span class="math inline">\(|r_{xy}| \geq 0.80\)</span> — is just a threshold on this quantity, applied pairwise over all <span class="math inline">\(\binom{14}{2}=91\)</span> pairs.</p>
+<div id="3a128d73" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>_M <span class="op">=</span> [</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">1.000</span>, <span class="fl">0.899</span>, <span class="fl">0.210</span>, <span class="fl">0.549</span>, <span class="fl">0.916</span>, <span class="fl">0.163</span>, <span class="fl">0.084</span>, <span class="fl">0.784</span>, <span class="fl">0.796</span>, <span class="fl">0.215</span>, <span class="fl">0.391</span>, <span class="fl">0.463</span>, <span class="op">-</span><span class="fl">0.207</span>, <span class="fl">0.224</span>],</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.899</span>, <span class="fl">1.000</span>, <span class="fl">0.250</span>, <span class="fl">0.555</span>, <span class="fl">0.971</span>, <span class="fl">0.211</span>, <span class="op">-</span><span class="fl">0.220</span>, <span class="fl">0.826</span>, <span class="fl">0.825</span>, <span class="fl">0.226</span>, <span class="fl">0.359</span>, <span class="fl">0.477</span>, <span class="op">-</span><span class="fl">0.142</span>, <span class="fl">0.183</span>],</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.210</span>, <span class="fl">0.250</span>, <span class="fl">1.000</span>, <span class="fl">0.245</span>, <span class="fl">0.251</span>, <span class="fl">0.925</span>, <span class="fl">0.159</span>, <span class="fl">0.229</span>, <span class="fl">0.236</span>, <span class="fl">0.666</span>, <span class="fl">0.186</span>, <span class="op">-</span><span class="fl">0.201</span>, <span class="op">-</span><span class="fl">0.470</span>, <span class="fl">0.711</span>],</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.549</span>, <span class="fl">0.555</span>, <span class="fl">0.245</span>, <span class="fl">1.000</span>, <span class="fl">0.628</span>, <span class="fl">0.155</span>, <span class="op">-</span><span class="fl">0.060</span>, <span class="fl">0.510</span>, <span class="fl">0.508</span>, <span class="fl">0.307</span>, <span class="fl">0.410</span>, <span class="fl">0.061</span>, <span class="op">-</span><span class="fl">0.167</span>, <span class="fl">0.101</span>],</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.916</span>, <span class="fl">0.971</span>, <span class="fl">0.251</span>, <span class="fl">0.628</span>, <span class="fl">1.000</span>, <span class="fl">0.202</span>, <span class="op">-</span><span class="fl">0.214</span>, <span class="fl">0.813</span>, <span class="fl">0.815</span>, <span class="fl">0.228</span>, <span class="fl">0.353</span>, <span class="fl">0.412</span>, <span class="op">-</span><span class="fl">0.171</span>, <span class="fl">0.190</span>],</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.163</span>, <span class="fl">0.211</span>, <span class="fl">0.925</span>, <span class="fl">0.155</span>, <span class="fl">0.202</span>, <span class="fl">1.000</span>, <span class="fl">0.147</span>, <span class="fl">0.152</span>, <span class="fl">0.168</span>, <span class="fl">0.682</span>, <span class="fl">0.162</span>, <span class="op">-</span><span class="fl">0.175</span>, <span class="op">-</span><span class="fl">0.460</span>, <span class="fl">0.789</span>],</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.084</span>, <span class="op">-</span><span class="fl">0.220</span>, <span class="fl">0.159</span>, <span class="op">-</span><span class="fl">0.060</span>, <span class="op">-</span><span class="fl">0.214</span>, <span class="fl">0.147</span>, <span class="fl">1.000</span>, <span class="op">-</span><span class="fl">0.120</span>, <span class="op">-</span><span class="fl">0.075</span>, <span class="fl">0.217</span>, <span class="fl">0.164</span>, <span class="op">-</span><span class="fl">0.373</span>, <span class="op">-</span><span class="fl">0.118</span>, <span class="fl">0.285</span>],</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.784</span>, <span class="fl">0.826</span>, <span class="fl">0.229</span>, <span class="fl">0.510</span>, <span class="fl">0.813</span>, <span class="fl">0.152</span>, <span class="op">-</span><span class="fl">0.120</span>, <span class="fl">1.000</span>, <span class="fl">0.981</span>, <span class="fl">0.308</span>, <span class="fl">0.450</span>, <span class="fl">0.361</span>, <span class="op">-</span><span class="fl">0.166</span>, <span class="fl">0.100</span>],</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.796</span>, <span class="fl">0.825</span>, <span class="fl">0.236</span>, <span class="fl">0.508</span>, <span class="fl">0.815</span>, <span class="fl">0.168</span>, <span class="op">-</span><span class="fl">0.075</span>, <span class="fl">0.981</span>, <span class="fl">1.000</span>, <span class="fl">0.338</span>, <span class="fl">0.527</span>, <span class="fl">0.336</span>, <span class="op">-</span><span class="fl">0.184</span>, <span class="fl">0.139</span>],</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.215</span>, <span class="fl">0.226</span>, <span class="fl">0.666</span>, <span class="fl">0.307</span>, <span class="fl">0.228</span>, <span class="fl">0.682</span>, <span class="fl">0.217</span>, <span class="fl">0.308</span>, <span class="fl">0.338</span>, <span class="fl">1.000</span>, <span class="fl">0.391</span>, <span class="op">-</span><span class="fl">0.241</span>, <span class="op">-</span><span class="fl">0.556</span>, <span class="fl">0.744</span>],</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.391</span>, <span class="fl">0.359</span>, <span class="fl">0.186</span>, <span class="fl">0.410</span>, <span class="fl">0.353</span>, <span class="fl">0.162</span>, <span class="fl">0.164</span>, <span class="fl">0.450</span>, <span class="fl">0.527</span>, <span class="fl">0.391</span>, <span class="fl">1.000</span>, <span class="fl">0.027</span>, <span class="op">-</span><span class="fl">0.222</span>, <span class="fl">0.171</span>],</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.463</span>, <span class="fl">0.477</span>, <span class="op">-</span><span class="fl">0.201</span>, <span class="fl">0.061</span>, <span class="fl">0.412</span>, <span class="op">-</span><span class="fl">0.175</span>, <span class="op">-</span><span class="fl">0.373</span>, <span class="fl">0.361</span>, <span class="fl">0.336</span>, <span class="op">-</span><span class="fl">0.241</span>, <span class="fl">0.027</span>, <span class="fl">1.000</span>, <span class="fl">0.108</span>, <span class="op">-</span><span class="fl">0.197</span>],</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    [<span class="op">-</span><span class="fl">0.207</span>, <span class="op">-</span><span class="fl">0.142</span>, <span class="op">-</span><span class="fl">0.470</span>, <span class="op">-</span><span class="fl">0.167</span>, <span class="op">-</span><span class="fl">0.171</span>, <span class="op">-</span><span class="fl">0.460</span>, <span class="op">-</span><span class="fl">0.118</span>, <span class="op">-</span><span class="fl">0.166</span>, <span class="op">-</span><span class="fl">0.184</span>, <span class="op">-</span><span class="fl">0.556</span>, <span class="op">-</span><span class="fl">0.222</span>, <span class="fl">0.108</span>, <span class="fl">1.000</span>, <span class="op">-</span><span class="fl">0.482</span>],</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.224</span>, <span class="fl">0.183</span>, <span class="fl">0.711</span>, <span class="fl">0.101</span>, <span class="fl">0.190</span>, <span class="fl">0.789</span>, <span class="fl">0.285</span>, <span class="fl">0.100</span>, <span class="fl">0.139</span>, <span class="fl">0.744</span>, <span class="fl">0.171</span>, <span class="op">-</span><span class="fl">0.197</span>, <span class="op">-</span><span class="fl">0.482</span>, <span class="fl">1.000</span>],</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>published_corr <span class="op">=</span> pd.DataFrame(_M, index<span class="op">=</span>hemo_vars, columns<span class="op">=</span>hemo_vars)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">7</span>))</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>sns.heatmap(published_corr, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">".2f"</span>, cmap<span class="op">=</span><span class="st">"coolwarm"</span>, center<span class="op">=</span><span class="dv">0</span>, vmin<span class="op">=-</span><span class="dv">1</span>, vmax<span class="op">=</span><span class="dv">1</span>, ax<span class="op">=</span>ax)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Published correlation matrix — e-Table 1 (Caravita et al. 2026)"</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Quick check against our own data: these numbers should be ~identical if</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co"># this really is the same cohort the paper used.</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>our_corr <span class="op">=</span> dataset[hemo_vars].corr(method<span class="op">=</span><span class="st">"pearson"</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>max_diff <span class="op">=</span> (our_corr <span class="op">-</span> published_corr).<span class="bu">abs</span>().to_numpy().copy()</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>np.fill_diagonal(max_diff, <span class="dv">0</span>)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Max |our correlation - published correlation| across all 91 pairs: </span><span class="sc">{</span>max_diff<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.4f}</span><span class="ss"> "</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"(near-zero confirms this is the same patient cohort)"</span>)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>high_corr_pairs <span class="op">=</span> (</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    published_corr.where(np.triu(np.ones(published_corr.shape), k<span class="op">=</span><span class="dv">1</span>).astype(<span class="bu">bool</span>))</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    .stack().loc[<span class="kw">lambda</span> s: s.<span class="bu">abs</span>() <span class="op">&gt;=</span> <span class="fl">0.80</span>].sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Pairs with |r| &gt;= 0.80 in the published table:"</span>)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(high_corr_pairs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="phase0_files/figure-html/cell-4-output-1.png" width="815" height="650" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Max |our correlation - published correlation| across all 91 pairs: 0.0005 (near-zero confirms this is the same patient cohort)
+
+Pairs with |r| &gt;= 0.80 in the published table:
+RAP.MIDA            RAP.MEDIA              0.981
+PAWP.MIDA           PAWP.MEDIA             0.971
+PAWP_MIDA.CO.f.slp  PAWP.MEDIA.CO.f.slp    0.925
+PAPM                PAWP.MEDIA             0.916
+                    PAWP.MIDA              0.899
+PAWP.MIDA           RAP.MIDA               0.826
+                    RAP.MEDIA              0.825
+PAWP.MEDIA          RAP.MEDIA              0.815
+                    RAP.MIDA               0.813
+dtype: float64</code></pre>
+</div>
+</div>
+</section>
+<section id="variable-selection-algorithm-then-the-published-list" class="level2">
+<h2 class="anchored" data-anchor-id="variable-selection-algorithm-then-the-published-list">3. Variable selection — algorithm, then the published list</h2>
+<blockquote class="blockquote">
+<p>“In case of high correlation between two variables, we planned to prefer PAWP […] over PA pressure and RAP and to prioritize values averaged throughout the cardiac cycle over end-diastolic or systolic values.”</p>
+</blockquote>
+<p>Coding that rule and applying it to every <code>|r| &gt;= 0.80</code> pair above:</p>
+<div id="a932d367" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>role <span class="op">=</span> {<span class="st">"PAPM"</span>: <span class="st">"PA"</span>, <span class="st">"PAPM.CO.f.slp"</span>: <span class="st">"PA"</span>,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>        <span class="st">"PAWP.MIDA"</span>: <span class="st">"PAWP"</span>, <span class="st">"PAWP.MEDIA"</span>: <span class="st">"PAWP"</span>, <span class="st">"PAWP_MIDA.CO.f.slp"</span>: <span class="st">"PAWP"</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"PAWP.MEDIA.CO.f.slp"</span>: <span class="st">"PAWP"</span>, <span class="st">"PAWP.V.AMPL"</span>: <span class="st">"PAWP"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"RAP.MIDA"</span>: <span class="st">"RAP"</span>, <span class="st">"RAP.MEDIA"</span>: <span class="st">"RAP"</span>, <span class="st">"RAP.MEDIA.CO.f.slp"</span>: <span class="st">"RAP"</span>, <span class="st">"RAP.VY"</span>: <span class="st">"RAP"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"PVR.MEDIA"</span>: <span class="st">"other"</span>, <span class="st">"CI"</span>: <span class="st">"other"</span>, <span class="st">"COVO2.slp"</span>: <span class="st">"other"</span>}</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>cycle <span class="op">=</span> {<span class="st">"PAPM"</span>: <span class="dv">0</span>, <span class="st">"PAPM.CO.f.slp"</span>: <span class="dv">0</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>         <span class="st">"PAWP.MIDA"</span>: <span class="dv">1</span>, <span class="st">"PAWP.MEDIA"</span>: <span class="dv">0</span>, <span class="st">"PAWP_MIDA.CO.f.slp"</span>: <span class="dv">1</span>, <span class="st">"PAWP.MEDIA.CO.f.slp"</span>: <span class="dv">0</span>, <span class="st">"PAWP.V.AMPL"</span>: <span class="dv">2</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>         <span class="st">"RAP.MIDA"</span>: <span class="dv">1</span>, <span class="st">"RAP.MEDIA"</span>: <span class="dv">0</span>, <span class="st">"RAP.MEDIA.CO.f.slp"</span>: <span class="dv">0</span>, <span class="st">"RAP.VY"</span>: <span class="dv">2</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>         <span class="st">"PVR.MEDIA"</span>: <span class="dv">2</span>, <span class="st">"CI"</span>: <span class="dv">2</span>, <span class="st">"COVO2.slp"</span>: <span class="dv">2</span>}</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>family_rank <span class="op">=</span> {<span class="st">"PAWP"</span>: <span class="dv">0</span>, <span class="st">"other"</span>: <span class="dv">0</span>, <span class="st">"PA"</span>: <span class="dv">1</span>, <span class="st">"RAP"</span>: <span class="dv">1</span>}  <span class="co"># prefer PAWP over PA pressure/RAP</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> keep_vs_drop(a, b):</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    ra, rb <span class="op">=</span> family_rank[role[a]], family_rank[role[b]]</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ra <span class="op">!=</span> rb:</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> (a, b) <span class="cf">if</span> ra <span class="op">&lt;</span> rb <span class="cf">else</span> (b, a)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    ca, cb <span class="op">=</span> cycle[a], cycle[b]</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (a, b) <span class="cf">if</span> ca <span class="op">&lt;=</span> cb <span class="cf">else</span> (b, a)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>survivors <span class="op">=</span> <span class="bu">set</span>(hemo_vars)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>dropped_by <span class="op">=</span> {}</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (a, b), r <span class="kw">in</span> high_corr_pairs.items():</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> a <span class="kw">not</span> <span class="kw">in</span> survivors <span class="kw">or</span> b <span class="kw">not</span> <span class="kw">in</span> survivors:</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    keep, drop <span class="op">=</span> keep_vs_drop(a, b)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    survivors.discard(drop)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    dropped_by[drop] <span class="op">=</span> (keep, r)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Rule drops </span><span class="sc">{</span><span class="bu">len</span>(dropped_by)<span class="sc">}</span><span class="ss"> variables, leaving </span><span class="sc">{</span><span class="bu">len</span>(survivors)<span class="sc">}</span><span class="ss">:"</span>)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> v, (keep, r) <span class="kw">in</span> dropped_by.items():</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  dropped </span><span class="sc">{</span>v<span class="sc">:22s}</span><span class="ss"> (beaten by </span><span class="sc">{</span>keep<span class="sc">}</span><span class="ss">, r=</span><span class="sc">{</span>r<span class="sc">:.3f}</span><span class="ss">)"</span>)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Survivors:"</span>, <span class="bu">sorted</span>(survivors))</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>cluster_vars <span class="op">=</span> [<span class="st">"PAWP.MEDIA"</span>, <span class="st">"PAWP.V.AMPL"</span>, <span class="st">"PAWP.MEDIA.CO.f.slp"</span>, <span class="st">"PAPM.CO.f.slp"</span>,</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>                <span class="st">"RAP.VY"</span>, <span class="st">"PVR.MEDIA"</span>, <span class="st">"CI"</span>, <span class="st">"COVO2.slp"</span>]</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>extra <span class="op">=</span> survivors <span class="op">-</span> <span class="bu">set</span>(cluster_vars)</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">The rule leaves 9 variables; the published list has 8. </span><span class="sc">{</span>extra<span class="sc">}</span><span class="ss"> survives the rule "</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"but isn't in the paper's final list, for reasons not stated in the Methods. "</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"Skipping to the paper's published 8 below, since the goal here is replicating what "</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"they reported, not re-deriving a result they didn't fully document. (Phase 1 revisits "</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"this exact 8-vs-9 discrepancy as a sensitivity-analysis finding, since it's not just a "</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"replication footnote — it says something about how much of the paper's variable choice "</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"is forced by the data vs. needs clinical judgement.)"</span>)</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cluster_vars)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rule drops 5 variables, leaving 9:
+  dropped RAP.MIDA               (beaten by RAP.MEDIA, r=0.981)
+  dropped PAWP.MIDA              (beaten by PAWP.MEDIA, r=0.971)
+  dropped PAWP_MIDA.CO.f.slp     (beaten by PAWP.MEDIA.CO.f.slp, r=0.925)
+  dropped PAPM                   (beaten by PAWP.MEDIA, r=0.916)
+  dropped RAP.MEDIA              (beaten by PAWP.MEDIA, r=0.815)
+Survivors: ['CI', 'COVO2.slp', 'PAPM.CO.f.slp', 'PAWP.MEDIA', 'PAWP.MEDIA.CO.f.slp', 'PAWP.V.AMPL', 'PVR.MEDIA', 'RAP.MEDIA.CO.f.slp', 'RAP.VY']
+
+The rule leaves 9 variables; the published list has 8. {'RAP.MEDIA.CO.f.slp'} survives the rule but isn't in the paper's final list, for reasons not stated in the Methods. Skipping to the paper's published 8 below, since the goal here is replicating what they reported, not re-deriving a result they didn't fully document. (Phase 1 revisits this exact 8-vs-9 discrepancy as a sensitivity-analysis finding, since it's not just a replication footnote — it says something about how much of the paper's variable choice is forced by the data vs. needs clinical judgement.)
+['PAWP.MEDIA', 'PAWP.V.AMPL', 'PAWP.MEDIA.CO.f.slp', 'PAPM.CO.f.slp', 'RAP.VY', 'PVR.MEDIA', 'CI', 'COVO2.slp']</code></pre>
+</div>
+</div>
+</section>
+<section id="patient-level-table" class="level2">
+<h2 class="anchored" data-anchor-id="patient-level-table">4. Patient-level table</h2>
+<p>Table 1 reports each step-varying variable at <code>REST</code> / <code>LEG</code> / <code>PEAK</code> separately, and each slope variable once. Building that structure:</p>
+<div id="e0597711" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>rest <span class="op">=</span> dataset.loc[dataset[<span class="st">"STEP"</span>] <span class="op">==</span> <span class="st">"REST"</span>].drop(columns<span class="op">=</span><span class="st">"STEP"</span>).add_suffix(<span class="st">"_REST"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>leg <span class="op">=</span> dataset.loc[dataset[<span class="st">"STEP"</span>] <span class="op">==</span> <span class="st">"LEG"</span>].drop(columns<span class="op">=</span><span class="st">"STEP"</span>).add_suffix(<span class="st">"_LEG"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>peak <span class="op">=</span> dataset.loc[dataset[<span class="st">"STEP"</span>] <span class="op">==</span> <span class="st">"PEAK"</span>].drop(columns<span class="op">=</span><span class="st">"STEP"</span>).add_suffix(<span class="st">"_PEAK"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> df <span class="kw">in</span> (rest, leg, peak):</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    df.rename(columns<span class="op">=</span>{df.columns[<span class="dv">0</span>]: <span class="st">"ID"</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>patients <span class="op">=</span> rest.merge(leg, on<span class="op">=</span><span class="st">"ID"</span>).merge(peak, on<span class="op">=</span><span class="st">"ID"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> v <span class="kw">in</span> slope_vars:</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    patients[v] <span class="op">=</span> patients[<span class="ss">f"</span><span class="sc">{</span>v<span class="sc">}</span><span class="ss">_PEAK"</span>]</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    patients.drop(columns<span class="op">=</span>[<span class="ss">f"</span><span class="sc">{</span>v<span class="sc">}</span><span class="ss">_REST"</span>, <span class="ss">f"</span><span class="sc">{</span>v<span class="sc">}</span><span class="ss">_LEG"</span>, <span class="ss">f"</span><span class="sc">{</span>v<span class="sc">}</span><span class="ss">_PEAK"</span>], inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>step_varying_cluster_vars <span class="op">=</span> [<span class="st">"PAWP.MEDIA"</span>, <span class="st">"PAWP.V.AMPL"</span>, <span class="st">"PVR.MEDIA"</span>, <span class="st">"RAP.VY"</span>, <span class="st">"CI"</span>]</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>slope_cluster_vars <span class="op">=</span> [<span class="st">"PAWP.MEDIA.CO.f.slp"</span>, <span class="st">"PAPM.CO.f.slp"</span>, <span class="st">"COVO2.slp"</span>]</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>cluster_cols <span class="op">=</span> ([<span class="ss">f"</span><span class="sc">{</span>v<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> v <span class="kw">in</span> step_varying_cluster_vars <span class="cf">for</span> s <span class="kw">in</span> (<span class="st">"REST"</span>, <span class="st">"LEG"</span>, <span class="st">"PEAK"</span>)]</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>                <span class="op">+</span> slope_cluster_vars)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>X_full <span class="op">=</span> patients[[<span class="st">"ID"</span>] <span class="op">+</span> cluster_cols].copy()</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> X_full.dropna().reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(X_full)<span class="sc">}</span><span class="ss"> -&gt; </span><span class="sc">{</span><span class="bu">len</span>(X)<span class="sc">}</span><span class="ss"> patients after dropping incomplete rows "</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"(paper reports n = 80)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>88 -&gt; 80 patients after dropping incomplete rows (paper reports n = 80)</code></pre>
+</div>
+</div>
+</section>
+<section id="k-means-clustering-continuous-reduced-8-variable-subset-unscaled" class="level2">
+<h2 class="anchored" data-anchor-id="k-means-clustering-continuous-reduced-8-variable-subset-unscaled">5. k-means clustering — continuous, reduced 8-variable subset, unscaled</h2>
+<blockquote class="blockquote">
+<p>“we adopted the k-means clustering method, with the Euclidean distance on the actual measurements without further normalization […] k = 5 was set as the number of clusters.”</p>
+</blockquote>
+<p>Given <span class="math inline">\(n\)</span> patients as points <span class="math inline">\(\mathbf{x}_1, \dots, \mathbf{x}_n \in
+\mathbb{R}^{18}\)</span> (the 18 columns built in Section 4) and a fixed number of clusters <span class="math inline">\(k\)</span>, k-means looks for cluster assignments <span class="math inline">\(c_i \in \{1,\dots,k\}\)</span> and centroids <span class="math inline">\(\boldsymbol{\mu}_1, \dots, \boldsymbol{\mu}_k\)</span> that minimize the within-cluster sum of squares (WCSS):</p>
+<p><span class="math display">\[
+\text{WCSS} = \sum_{j=1}^{k} \sum_{i:\, c_i = j} \lVert \mathbf{x}_i - \boldsymbol{\mu}_j \rVert_2^2,
+\qquad
+\boldsymbol{\mu}_j = \frac{1}{|\{i : c_i = j\}|}\sum_{i:\, c_i = j} \mathbf{x}_i
+\]</span></p>
+<p>— plain squared Euclidean distance, unweighted, exactly as the paper specifies (“without further normalization”: no per-variable scaling, so a variable on a larger numeric scale, like PVR, mechanically dominates the distance over one on a smaller scale, like cardiac index). This has no closed-form solution; <code>sklearn</code>’s <code>KMeans</code> minimizes it by Lloyd’s algorithm (iteratively reassigning points to the nearest centroid, then recomputing centroids) from <code>n_init=10</code> random starts, keeping the best. <span class="math inline">\(k\)</span> itself isn’t estimated by this objective — WCSS only ever decreases as <span class="math inline">\(k\)</span> grows — which is why the elbow plot below is a visual heuristic, not a statistic, and why the paper (and this script) just fixes <span class="math inline">\(k=5\)</span> by eye.</p>
+<div id="de20f1b6" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>X_arr <span class="op">=</span> X.drop(columns<span class="op">=</span><span class="st">"ID"</span>).to_numpy()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>wcss <span class="op">=</span> []</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>k_range <span class="op">=</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">16</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> k_range:</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    wcss.append(KMeans(n_clusters<span class="op">=</span>k, n_init<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span>RANDOM_STATE).fit(X_arr).inertia_)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">5</span>))</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="bu">list</span>(k_range), wcss, marker<span class="op">=</span><span class="st">"o"</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Number of clusters"</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Within-cluster sum of squares"</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Elbow plot (cf. paper e-Figure 1)"</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>km5 <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">5</span>, n_init<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span>RANDOM_STATE).fit(X_arr)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>X_labeled <span class="op">=</span> X.copy()</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>X_labeled[<span class="st">"cluster"</span>] <span class="op">=</span> km5.labels_</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Relabel 1 (mildest) -&gt; 5 (most severe) by peak-exercise mean PAWP, so our</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co"># numbering means the same thing as the paper's, even if membership differs.</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>order <span class="op">=</span> X_labeled.groupby(<span class="st">"cluster"</span>)[<span class="st">"PAWP.MEDIA_PEAK"</span>].mean().sort_values().index</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>relabel <span class="op">=</span> {old: new <span class="op">+</span> <span class="dv">1</span> <span class="cf">for</span> new, old <span class="kw">in</span> <span class="bu">enumerate</span>(order)}</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>X_labeled[<span class="st">"cluster"</span>] <span class="op">=</span> X_labeled[<span class="st">"cluster"</span>].<span class="bu">map</span>(relabel)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>centroids <span class="op">=</span> km5.cluster_centers_[[<span class="bu">list</span>(order).index(old) <span class="cf">for</span> old <span class="kw">in</span> <span class="bu">sorted</span>(relabel, key<span class="op">=</span>relabel.get)]]</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Our cluster sizes:"</span>, <span class="bu">dict</span>(X_labeled[<span class="st">"cluster"</span>].value_counts().sort_index()))</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Paper's published sizes: 26, 30, 12, 4, 8"</span>)</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">5</span>))</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>X_labeled, x<span class="op">=</span><span class="st">"cluster"</span>, y<span class="op">=</span><span class="st">"PAWP.MEDIA_PEAK"</span>, ax<span class="op">=</span>ax)</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Peak-exercise mean PAWP by cluster"</span>)</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="phase0_files/figure-html/cell-7-output-1.png" width="656" height="464" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Our cluster sizes: {1: np.int64(18), 2: np.int64(13), 3: np.int64(29), 4: np.int64(8), 5: np.int64(12)}
+Paper's published sizes: 26, 30, 12, 4, 8</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="phase0_files/figure-html/cell-7-output-3.png" width="656" height="464" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="data-quality-assessment" class="level2">
+<h2 class="anchored" data-anchor-id="data-quality-assessment">6. Data quality assessment</h2>
+<section id="a.-variable-inventory" class="level3">
+<h3 class="anchored" data-anchor-id="a.-variable-inventory">6a. Variable inventory</h3>
+<div id="913639b8" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Continuous hemodynamic variables (14 screened for correlation): </span><span class="sc">{</span>hemo_vars<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Of these, the 8 used for clustering: </span><span class="sc">{</span>cluster_vars<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Categorical/binary phenotype variables (7, profiling only here, not clustering inputs "</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"in this phase): </span><span class="sc">{</span>binary_vars<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Note: the paper's clinical characteristics (age, sex, NT-proBNP, LVEF, etc. — its "</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Table 3) ARE present in dataset1.txt (as ETA/SESSO/PESO/ALTEZZA/BMI), alongside many "</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"other raw columns not used by this replication at all. Phase 1 assesses the full raw "</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"file set (~124 candidate columns), not just the paper's named 21."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Continuous hemodynamic variables (14 screened for correlation): ['PAPM', 'PAWP.MIDA', 'PAWP_MIDA.CO.f.slp', 'PAWP.V.AMPL', 'PAWP.MEDIA', 'PAWP.MEDIA.CO.f.slp', 'PVR.MEDIA', 'RAP.MIDA', 'RAP.MEDIA', 'RAP.MEDIA.CO.f.slp', 'RAP.VY', 'CI', 'COVO2.slp', 'PAPM.CO.f.slp']
+
+Of these, the 8 used for clustering: ['PAWP.MEDIA', 'PAWP.V.AMPL', 'PAWP.MEDIA.CO.f.slp', 'PAPM.CO.f.slp', 'RAP.VY', 'PVR.MEDIA', 'CI', 'COVO2.slp']
+
+Categorical/binary phenotype variables (7, profiling only here, not clustering inputs in this phase): ['PH', 'HFpEF', 'stiff_LA', 'high_PVR', 'RHF', 'TR', 'low_CO']
+
+Note: the paper's clinical characteristics (age, sex, NT-proBNP, LVEF, etc. — its Table 3) ARE present in dataset1.txt (as ETA/SESSO/PESO/ALTEZZA/BMI), alongside many other raw columns not used by this replication at all. Phase 1 assesses the full raw file set (~124 candidate columns), not just the paper's named 21.</code></pre>
+</div>
+</div>
+</section>
+<section id="b.-missingness-and-structural-gaps" class="level3">
+<h3 class="anchored" data-anchor-id="b.-missingness-and-structural-gaps">6b. Missingness and structural gaps</h3>
+<div id="3c2f660c" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>missing_by_step <span class="op">=</span> (</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    dataset.set_index([<span class="st">"ID"</span>, <span class="st">"STEP"</span>])[hemo_vars].isna()</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    .groupby(<span class="st">"STEP"</span>, observed<span class="op">=</span><span class="va">True</span>).mean().mul(<span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"% missing per hemodynamic variable, by STEP:"</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>missing_by_step</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>% missing per hemodynamic variable, by STEP:</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">PAPM</th>
+<th data-quarto-table-cell-role="th">PAWP.MIDA</th>
+<th data-quarto-table-cell-role="th">PAWP_MIDA.CO.f.slp</th>
+<th data-quarto-table-cell-role="th">PAWP.V.AMPL</th>
+<th data-quarto-table-cell-role="th">PAWP.MEDIA</th>
+<th data-quarto-table-cell-role="th">PAWP.MEDIA.CO.f.slp</th>
+<th data-quarto-table-cell-role="th">PVR.MEDIA</th>
+<th data-quarto-table-cell-role="th">RAP.MIDA</th>
+<th data-quarto-table-cell-role="th">RAP.MEDIA</th>
+<th data-quarto-table-cell-role="th">RAP.MEDIA.CO.f.slp</th>
+<th data-quarto-table-cell-role="th">RAP.VY</th>
+<th data-quarto-table-cell-role="th">CI</th>
+<th data-quarto-table-cell-role="th">COVO2.slp</th>
+<th data-quarto-table-cell-role="th">PAPM.CO.f.slp</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">STEP</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">LEG</th>
+<td>0.0</td>
+<td>1.1</td>
+<td>0.0</td>
+<td>1.1</td>
+<td>1.1</td>
+<td>0.0</td>
+<td>2.3</td>
+<td>6.8</td>
+<td>6.8</td>
+<td>5.7</td>
+<td>6.8</td>
+<td>1.1</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">PEAK</th>
+<td>1.1</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>2.2</td>
+<td>5.6</td>
+<td>5.6</td>
+<td>5.6</td>
+<td>5.6</td>
+<td>1.1</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">REST</th>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>5.6</td>
+<td>5.6</td>
+<td>5.6</td>
+<td>5.6</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="f47dd213" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>missing_by_step.T.plot(kind<span class="op">=</span><span class="st">"bar"</span>, ax<span class="op">=</span>ax)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"% missing"</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Missingness per hemodynamic variable, by exercise step"</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>ax.legend(title<span class="op">=</span><span class="st">"STEP"</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>, ha<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="phase0_files/figure-html/cell-10-output-1.png" width="944" height="460" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="a15a8ad2" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>irregular_ids <span class="op">=</span> [</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    pid <span class="cf">for</span> pid, counts <span class="kw">in</span> dataset.groupby(<span class="st">"ID"</span>)[<span class="st">"STEP"</span>].value_counts().unstack(fill_value<span class="op">=</span><span class="dv">0</span>).iterrows()</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> (counts <span class="op">==</span> <span class="dv">1</span>).<span class="bu">all</span>() <span class="kw">or</span> <span class="bu">len</span>(counts) <span class="op">&lt;</span> <span class="dv">3</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Patients missing a full REST/LEG/PEAK triplet: </span><span class="sc">{</span>irregular_ids<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>na_per_col <span class="op">=</span> X_full.drop(columns<span class="op">=</span><span class="st">"ID"</span>).isna().<span class="bu">sum</span>()</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>na_per_col <span class="op">=</span> na_per_col[na_per_col <span class="op">&gt;</span> <span class="dv">0</span>].sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="sc">{</span><span class="bu">len</span>(X_full)<span class="sc">}</span><span class="ss"> -&gt; </span><span class="sc">{</span><span class="bu">len</span>(X)<span class="sc">}</span><span class="ss"> patients survive dropna() for the clustering input matrix "</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"(</span><span class="sc">{</span><span class="bu">len</span>(X_full) <span class="op">-</span> <span class="bu">len</span>(X)<span class="sc">}</span><span class="ss"> dropped). Columns responsible:"</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(na_per_col)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(na_per_col) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    na_per_col.plot(kind<span class="op">=</span><span class="st">"barh"</span>, ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">"indianred"</span>)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    ax.invert_yaxis()</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">"Patients dropped (missing this column)"</span>)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="st">"Which columns drive the dropna() loss in the clustering input matrix"</span>)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Patients missing a full REST/LEG/PEAK triplet: [83]
+
+88 -&gt; 80 patients survive dropna() for the clustering input matrix (8 dropped). Columns responsible:
+RAP.VY_LEG         6
+RAP.VY_REST        5
+RAP.VY_PEAK        5
+PVR.MEDIA_LEG      2
+PVR.MEDIA_PEAK     1
+PAWP.V.AMPL_LEG    1
+PAWP.MEDIA_LEG     1
+CI_LEG             1
+dtype: int64</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="phase0_files/figure-html/cell-11-output-2.png" width="747" height="368" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="c.-outlier-screen" class="level3">
+<h3 class="anchored" data-anchor-id="c.-outlier-screen">6c. Outlier screen</h3>
+<div id="6b93246a" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>hemo_z <span class="op">=</span> (dataset[hemo_vars] <span class="op">-</span> dataset[hemo_vars].mean()) <span class="op">/</span> dataset[hemo_vars].std()</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>outlier_counts <span class="op">=</span> (hemo_z.<span class="bu">abs</span>() <span class="op">&gt;</span> <span class="dv">3</span>).<span class="bu">sum</span>().sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Rows with |z| &gt; 3 (vs. the rest of this sample), per variable:"</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(outlier_counts[outlier_counts <span class="op">&gt;</span> <span class="dv">0</span>])</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>outlier_counts[outlier_counts <span class="op">&gt;</span> <span class="dv">0</span>].plot(kind<span class="op">=</span><span class="st">"barh"</span>, ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">"darkorange"</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>ax.invert_yaxis()</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Rows with |z| &gt; 3"</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Outlier screen — hemodynamic variables"</span>)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows with |z| &gt; 3 (vs. the rest of this sample), per variable:
+PAWP.MEDIA.CO.f.slp    6
+RAP.MEDIA.CO.f.slp     6
+RAP.VY                 4
+RAP.MIDA               3
+PVR.MEDIA              3
+PAWP_MIDA.CO.f.slp     3
+RAP.MEDIA              3
+PAPM.CO.f.slp          3
+PAWP.MIDA              2
+PAWP.V.AMPL            1
+dtype: int64</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="phase0_files/figure-html/cell-12-output-2.png" width="747" height="464" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="limitations-of-this-replication" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-of-this-replication">Limitations of this replication</h2>
+<ul>
+<li><strong>Variable selection isn’t fully reproducible.</strong> The paper’s stated tie-break rule, applied mechanically to the real correlation table, yields 9 variables; the paper reports 8. The extra survivor (<code>RAP.MEDIA.CO.f.slp</code>) isn’t correlated ≥0.80 with anything else left, so its exclusion isn’t explained by the Methods as written — we drop it anyway to match what they actually report.</li>
+<li><strong>k is imposed, not inferred.</strong> k=5 comes from an “elbow, although not very pronounced” the paper describes qualitatively — not a criterion anyone could re-run and get the same answer from.</li>
+<li><strong>Cluster assignment is a hard, deterministic label.</strong> k-means gives each patient exactly one cluster with no notion of confidence or borderline membership, and is sensitive to initialization — our sizes (18/13/29/8/12) land in the same ballpark as the paper’s (26/30/12/4/8) but don’t match exactly, and there’s no way to tell, from k-means alone, whether that gap is noise or a real difference in cohort/implementation.</li>
+<li><strong>No uncertainty quantification anywhere</strong> — not on cluster count, not on membership, not on the variable-selection step itself.</li>
+<li><strong>Only 21 of ~124 raw columns were ever considered</strong>, and only on the paper’s say-so. Phase 1 goes back to the full raw files and assesses that choice directly, rather than inheriting it uncritically.</li>
+</ul>
+<p>This replication’s job ends here. Whether 8 (or 9, or more) variables is the right choice, and what kind of model should actually be built on top of them, is Phase 1 and Phase 2’s job — not re-litigated in this notebook.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
